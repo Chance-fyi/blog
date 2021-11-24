@@ -2,3 +2,4 @@ baseURL = 'http://example.org/'
 languageCode = 'zh'
 title = 'Chance'
 theme = 'PaperMod'
+buildDrafts = true    # 构建包含草稿内容
