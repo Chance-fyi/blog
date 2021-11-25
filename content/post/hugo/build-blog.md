@@ -1,7 +1,7 @@
 ---
 title: "使用Hugo搭建个人博客"
 date: 2021-11-20T13:44:46+08:00
-draft: true
+draft: false
 ---
 
 ## 安装Go
