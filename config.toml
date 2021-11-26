@@ -3,3 +3,15 @@ languageCode = 'zh'
 title = 'Chance'
 theme = 'PaperMod'
 buildDrafts = true    # 构建包含草稿内容
+
+[params]
+    DateFormat = '2006-01-02'   # 日期格式化 好像只能写2006年不然格式化的数据错误
+    ShowReadingTime = true      # 文章阅读时间显示
+    ShowShareButtons = false    # 分享按钮
+    ShowCodeCopyButtons = true  # 代码复制按钮
+    disableSpecial1stPost = true# 是否禁用第一篇文章特殊显示
+    hideSummary = false         # 隐藏列表摘要
+    showtoc = false             # 显示文章目录
+    ShowPostNavLinks = true     # 显示上一篇、下一篇
+    ShowBreadCrumbs = true      # 显示面包屑导航
+    comments = true             # 评论

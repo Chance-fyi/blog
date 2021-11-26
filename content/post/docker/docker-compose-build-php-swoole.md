@@ -43,9 +43,6 @@ RUN printf "" | pecl install redis-5.3.4
 # 下载mongodb扩展
 RUN printf "" | pecl install mongodb-1.11.1
 
-# 下载pdo_sqlsrv扩展
-RUN printf "" | pecl install pdo_sqlsrv-5.9.0
-
 # 下载xlswriter扩展
 RUN printf "" | pecl install xlswriter-1.5.1
 
@@ -110,8 +107,6 @@ RUN set -x \
     && printf "" | pecl install redis-5.3.4 \
     # 下载mongodb扩展
     && printf "" | pecl install mongodb-1.11.1 \
-    # 下载pdo_sqlsrv扩展
-    && printf "" | pecl install pdo_sqlsrv-5.9.0 \
     # 下载xlswriter扩展
     && printf "" | pecl install xlswriter-1.5.1 \
     # 下载swoole扩展
@@ -206,7 +201,7 @@ c7c0573ad9a9   nginx           "/docker-entrypoint.…"   45 seconds ago   Up 40
 01d2b6f56e17   my_php:8.0.12   "docker-php-entrypoi…"   45 seconds ago   Up 42 seconds   0.0.0.0:9000->9000/tcp, 0.0.0.0:9501->9501/tcp   docker-php-1  
 8a6fbf0bc833   redis           "docker-entrypoint.s…"   45 seconds ago   Up 41 seconds   0.0.0.0:6379->6379/tcp                           docker-redis-1
 # 将PHP的配置从容器复制出来 然后可以将上面的配置挂载注释解开
-PS D:\Docker> docker cp 01d2b6f56e17:/usr/local/etc/ ./php/php8.0.12/conf 
+PS D:\Docker> docker cp 01d2b6f56e17:/usr/local/etc/ ./php/php8.0.12/conf/ 
 ```
 
 ## 测试
