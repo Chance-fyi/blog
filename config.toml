@@ -1,5 +1,5 @@
 baseURL = 'http://example.org/'
-languageCode = 'zh'
+defaultContentLanguage = 'zh'
 title = 'Chance'
 theme = 'PaperMod'
 buildDrafts = true    # 构建包含草稿内容
@@ -13,6 +13,5 @@ buildDrafts = true    # 构建包含草稿内容
     hideSummary = false         # 隐藏列表摘要
     showtoc = false             # 显示文章目录
     ShowPostNavLinks = true     # 显示上一篇、下一篇
-    ShowBreadCrumbs = true      # 显示面包屑导航
+    ShowBreadCrumbs = false     # 显示面包屑导航
     comments = true             # 评论
-    defaultTheme = 'dark'
