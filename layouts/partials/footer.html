@@ -11,8 +11,8 @@
         <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
     </span>
     <br>
-    <span id="busuanzi_container_site_uv">uv <span id="busuanzi_value_site_uv"></span></span> | 
-    <span id="busuanzi_container_site_pv">pv <span id="busuanzi_value_site_pv"></span></span>
+    <span id="busuanzi_container_site_uv" style="display: none;">uv <span id="busuanzi_value_site_uv"></span></span> | 
+    <span id="busuanzi_container_site_pv" style="display: none;">pv <span id="busuanzi_value_site_pv"></span></span>
 </footer>
 {{- end }}
 
@@ -145,4 +145,14 @@
         var s = document.getElementsByTagName("script")[0]; 
         s.parentNode.insertBefore(hm, s);
     })();
+</script>
+<!-- 谷歌分析 -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1EN9PGMCBL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1EN9PGMCBL');
 </script>
