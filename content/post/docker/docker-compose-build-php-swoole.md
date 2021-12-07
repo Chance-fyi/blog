@@ -239,7 +239,7 @@ PS D:\Docker> docker exec -it 01d2b6f56e17 php swoole.php
 
 **运行结果**
 
-![image-20211125163033206](http://r34c5ua3p.hn-bkt.clouddn.com/image-20211125163033206.png)
+![image-20211125163033206](https://image.chance.fyi/image-20211125163033206.png)
 
 
 
