@@ -3,6 +3,7 @@ defaultContentLanguage = 'zh'
 title = 'Chance'
 theme = 'PaperMod'
 buildDrafts = false    # 构建包含草稿内容
+GoogleAnalytics = 'G-1EN9PGMCBL'
 
 [params]
     DateFormat = '2006-01-02'   # 日期格式化 好像只能写2006年不然格式化的数据错误
