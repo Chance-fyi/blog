@@ -2,6 +2,7 @@
 title: "PHP镜像中自带的几个特殊的命令"
 date: 2021-11-24T15:06:12+08:00
 draft: false
+categories: ["Docker","PHP"]
 ---
 
 - docker-php-source

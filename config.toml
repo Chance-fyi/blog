@@ -16,3 +16,10 @@ GoogleAnalytics = 'G-1EN9PGMCBL'
     ShowPostNavLinks = true     # 显示上一篇、下一篇
     ShowBreadCrumbs = false     # 显示面包屑导航
     comments = false             # 评论
+
+[menu]
+[[menu.main]]
+    identifier = 'categories'
+    name = '分类'
+    pre = ""
+    url = '/categories/'
