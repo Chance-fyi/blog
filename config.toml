@@ -3,6 +3,7 @@ defaultContentLanguage = 'zh'
 title = 'Chance'
 theme = 'PaperMod'
 buildDrafts = false    # 构建包含草稿内容
+GoogleAnalytics = 'G-1EN9PGMCBL'
 
 [params]
     DateFormat = '2006-01-02'   # 日期格式化 好像只能写2006年不然格式化的数据错误
@@ -14,4 +15,11 @@ buildDrafts = false    # 构建包含草稿内容
     showtoc = false             # 显示文章目录
     ShowPostNavLinks = true     # 显示上一篇、下一篇
     ShowBreadCrumbs = false     # 显示面包屑导航
-    comments = true             # 评论
+    comments = false             # 评论
+
+[menu]
+[[menu.main]]
+    identifier = 'categories'
+    name = '分类'
+    pre = ""
+    url = '/categories/'
