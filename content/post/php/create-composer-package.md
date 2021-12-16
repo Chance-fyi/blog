@@ -1,7 +1,7 @@
 ---
 title: "创建一个composer包"
 date: 2021-12-13T16:45:44+08:00
-draft: true
+draft: false
 ---
 
 ```bash
