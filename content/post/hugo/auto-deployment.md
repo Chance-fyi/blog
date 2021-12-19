@@ -210,9 +210,11 @@ services:
 
 ## 问题
 
+### Nginx服务退出
+
 当我执行`docker-compose up -d`之后nginx服务立即退出了，原因是`webhook`还没有启动成功，而`webhook.conf`配置中又依赖于webhook，监听到9000端口还没启动就报错退出了。
 
-### 解决办法
+#### 解决办法
 
 使用一个[wait-for-it](https://github.com/vishnubob/wait-for-it)的shell脚本来监听webhook是否启动成功，然后在启动Nginx。
 
@@ -264,6 +266,29 @@ services:
 ```
 
 再次`docker-compose up -d`之后Nginx服务就不会退出啦。
+
+### blog-webhook.sh执行失败
+
+当我push到github上的时候，webhook请求是成功了的，但是修改并没有被更新。
+
+经过排查发现如下报错：
+
+```sh
+error occurred: fork/exec /sh/blog-webhook.sh: no such file or directory
+```
+
+排查发现文件是存在的，然后进入容器执行这个脚本：
+
+```sh
+root@cc8ce34686cd:/home# /sh/blog-webhook.sh 
+bash: /sh/blog-webhook.sh: /bin/bash^M: bad interpreter: No such file or directory
+```
+
+经过搜索得知是因为在Windows下编辑的sh脚本是dos格式的，而Linux环境下需要文件是unix格式才行。
+
+#### 解决办法
+
+参考这篇[文章](https://blog.csdn.net/CodyGuo/article/details/72811173?locationNum=1&fps=1)使用vscode修改了文件格式，再上传就没有问题了。
 
 
 
