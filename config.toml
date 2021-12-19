@@ -15,7 +15,7 @@ GoogleAnalytics = 'G-1EN9PGMCBL'
     showtoc = false             # 显示文章目录
     ShowPostNavLinks = true     # 显示上一篇、下一篇
     ShowBreadCrumbs = false     # 显示面包屑导航
-    comments = false             # 评论
+    comments = true             # 评论
 
 [menu]
 [[menu.main]]
