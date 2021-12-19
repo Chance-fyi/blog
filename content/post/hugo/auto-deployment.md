@@ -1,5 +1,5 @@
 ---
-title: "自动部署"
+title: "自动部署1"
 date: 2021-12-18T13:26:02+08:00
 draft: false
 categories: ["Hugo","git"]
