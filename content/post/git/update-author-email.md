@@ -3,6 +3,7 @@ title: "修改git历史提交用户名与邮箱"
 date: 2021-12-15T20:33:01+08:00
 draft: false
 categories: ["git"]
+tags: ["git"]
 ---
 
 今天意外发现github上的commit记录有两个用户名，一个是公司的配置，一个是家里的配置。所以需要将已经提交的commit记录的`Author`和`email`修改回来。

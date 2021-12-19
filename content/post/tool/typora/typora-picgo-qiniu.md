@@ -3,6 +3,7 @@ title: "Typora使用Picgo图片上传七牛云的配置"
 date: 2021-11-25T16:47:08+08:00
 draft: false
 categories: ["Typora"]
+tags: ["Typora"]
 ---
 
 ```json

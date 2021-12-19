@@ -3,6 +3,7 @@ title: "使用Hugo搭建个人博客"
 date: 2021-11-20T13:44:46+08:00
 draft: false
 categories: ["Hugo"]
+tags: ["Hugo"]
 ---
 
 ## 安装Go

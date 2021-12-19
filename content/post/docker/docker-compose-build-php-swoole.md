@@ -2,7 +2,8 @@
 title: "使用docker-compose构建PHP8.0 + Swoole + Redis + MongoDB环境"
 date: 2021-11-24T15:36:45+08:00
 draft: false
-categories: ["Docker","docker-compose","PHP"]
+categories: ["Docker","PHP"]
+tags: ["PHP","swoole","Docker","docker-compose","PHP环境搭建"]
 ---
 
 最近公司考虑使用PHP8 + swoole进行项目的重构，所以要搭建一个环境进行开发学习。swoole只能运行在Linux系统下，考虑到统一团队的开发环境，避免别的小伙伴在环境问题上浪费太多时间，所以选择使用docker来构建一个开发环境。

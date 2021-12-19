@@ -19,7 +19,18 @@ GoogleAnalytics = 'G-1EN9PGMCBL'
 
 [menu]
 [[menu.main]]
+    identifier = 'home'
+    name = '首页'
+    pre = ""
+    url = '/'
+    weight = 1
+[[menu.main]]
     identifier = 'categories'
     name = '分类'
     pre = ""
     url = '/categories/'
+[[menu.main]]
+    identifier = 'tags'
+    name = '标签'
+    pre = ""
+    url = '/tags/'

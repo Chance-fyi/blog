@@ -1,7 +1,9 @@
 ---
 title: "hugo添加utterances🔮评论系统"
 date: 2021-11-28T13:23:17+08:00
-draft: true
+draft: false
+categories: ["Hugo"]
+tags: ["Hugo","utterances","评论系统"]
 ---
 
 ## utterances🔮
