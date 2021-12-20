@@ -1,7 +1,9 @@
 ---
-title: "Phpunit"
+title: "在PhpStorm中使用PHPUnit进行单元测试"
 date: 2021-12-19T11:34:23+08:00
-draft: true
+draft: false
+categories: ["PHP"]
+tags: ["PHP","PHPUnit","单元测试","PhpStorm"]
 ---
 
 ## PHPUnit是什么
@@ -128,7 +130,7 @@ Tests: 1, Assertions: 4, Failures: 1.
 
 经过排查发现是因为PhpStorm默认加上了`--teamcity`参数的原因，在命令行执行加这个参数也是报错，那就只有去掉这个参数了，可是PhpStorm里也没有找到怎么去掉这个默认参数。
 
-所以最后解决办法
+因为我们也不需要这个参数，所以最后解决办法为，将`/home/vendor/phpunit/phpunit/src/Logging/TeamCity/TeamCityLogger.php`文件的 92 - 100 行给注释掉，就可以执行成功了。
 
 
 
