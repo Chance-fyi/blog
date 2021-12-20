@@ -26,3 +26,139 @@ root@d63b4f236f0c:/home# composer require --dev phpunit/phpunit
 
 + 首先在项目下面新建一个`tests`文件夹，用来存放单元测试文件。
 + 然后编辑composer.json文件为tests文件夹增加一个命名空间`"Chance\\Log\\Test\\": "tests/"`并执行`composer dump-autoload`更新composer的命名空间与文件夹映射关系。
++ 在tests目录创建StackTest.php文件，使用官网的一个例子来测试。
+
+**StackTest.php**
+
+```php
+<?php
+
+    namespace Chance\Log\Test;
+
+use PHPUnit\Framework\TestCase;
+
+class StackTest extends TestCase
+{
+    public function testPushAndPop()
+    {
+        $stack = [];
+        // 断言方法 assertEquals 判断两值是否相等
+        $this->assertEquals(0, count($stack));
+
+        array_push($stack, 'foo');
+        $this->assertEquals('foo', $stack[count($stack)-1]);
+        $this->assertEquals(1, count($stack));
+
+        $this->assertEquals('foo', array_pop($stack));
+        $this->assertEquals(0, count($stack));
+    }
+}
+```
+
+## 命令行执行单元测试
+
+运行`./vendor/phpunit/phpunit/phpunit --verbose --colors ./tests/`命令执行`tests`目录下所有单元测试。
+
+```shell
+root@7608e16a4e0a:/home# ./vendor/phpunit/phpunit/phpunit --verbose --colors ./tests/
+PHPUnit 10.0-dev by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.1.0
+
+.                                                                   1 / 1 (100%)
+
+Time: 00:00.156, Memory: 6.00 MB
+
+OK (1 test, 5 assertions)
+```
+
+可以看到执行成功并且没有错误，然后我们将倒数第二个断言的第一个变量字符串改成`foo1`再次执行单元测试。
+
+```shell
+root@7608e16a4e0a:/home# ./vendor/phpunit/phpunit/phpunit --verbose --colors ./tests/
+PHPUnit 10.0-dev by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.1.0
+
+F                                                                   1 / 1 (100%)
+
+Time: 00:00.266, Memory: 6.00 MB
+
+There was 1 failure:
+
+1) Chance\Log\Test\StackTest::testPushAndPop
+Failed asserting that two strings are equal.
+--- Expected
++++ Actual
+@@ @@
+-'foo1'
++'foo'
+
+/home/tests/StackTest.php:23
+
+FAILURES!
+Tests: 1, Assertions: 4, Failures: 1.
+```
+
+可以看到断言验证失败，单元测试未通过。
+
+更多的命令选项与断言方法可自行查看文档。
+
+## PhpStorm执行单元测试
+
+### 配置
+
+打开`File`->`Settings`->`PHP`->`Test Frameworks`根据自己的安装方法配置PHPUnit的执行文件地址。
+
+![image-20211220183743437](https://image.chance.fyi/image-20211220183743437.png)
+
+然后打开`Run`->`Edit Confiqurations`新建一个PHPUnit。
+
+![image-20211220184707328](https://image.chance.fyi/image-20211220184707328.png)
+
+![image-20211220190515032](https://image.chance.fyi/image-20211220190515032.png)
+
+### 执行
+
+![image-20211220190555597](https://image.chance.fyi/image-20211220190555597.png)
+
+执行之后发现报错了，报错信息为`Message:  assert($testSuite instanceof TestSuiteForTestMethodWithDataProvider)`。
+
+![image-20211220190705856](https://image.chance.fyi/image-20211220190705856.png)
+
+经过排查发现是因为PhpStorm默认加上了`--teamcity`参数的原因，在命令行执行加这个参数也是报错，那就只有去掉这个参数了，可是PhpStorm里也没有找到怎么去掉这个默认参数。
+
+所以最后解决办法
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
