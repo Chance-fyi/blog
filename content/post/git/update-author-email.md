@@ -1,12 +1,12 @@
 ---
-title: "修改git历史提交用户名与邮箱"
+title: "修改Git历史提交用户名与邮箱"
 date: 2021-12-15T20:33:01+08:00
 draft: false
-categories: ["git"]
-tags: ["git"]
+categories: ["Git"]
+tags: ["Git"]
 ---
 
-今天意外发现github上的commit记录有两个用户名，一个是公司的配置，一个是家里的配置。所以需要将已经提交的commit记录的`Author`和`email`修改回来。
+今天意外发现 GitHub 上的 commit 记录有两个用户名，一个是公司的配置，一个是家里的配置。所以需要将已经提交的 commit 记录的`Author`和`email`修改回来。
 
 ## 修改本机全局用户名与邮箱
 
@@ -24,6 +24,8 @@ git config --global user.email "输入你的邮箱"
 ## 批量修改历史信息
 
 将下列代码复制到文本中修改为自己的信息，然后将代码复制到命令行回车运行。
+
+> 注意：以下命令会修改历史，变更 **commit id** ，其他人会不同步，慎用。
 
 ```bash
 git filter-branch -f --env-filter '
@@ -60,6 +62,6 @@ WARNING: git-filter-branch has a glut of gotchas generating mangled history
 ## 将修改结果推送到远程
 
 ```bash
-git push origin --force --all
+git push -f
 ```
 

@@ -42,7 +42,7 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 ## 搭建环境
 
-> 环境的源码可以到我的github[查看](https://github.com/Chance-fyi/cvm-docker/releases/tag/v1.0.0)
+> 环境的源码可以到我的GitHub[查看](https://github.com/Chance-fyi/cvm-docker/releases/tag/v0.0.1)
 
 首先确认一下我们的环境需要什么东西：
 
@@ -126,7 +126,7 @@ git pull
 hugo
 ```
 
-### github
+### GitHub
 
 ![image-20211218211108204](https://image.chance.fyi/image-20211218211108204.png)
 
