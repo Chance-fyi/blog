@@ -1,7 +1,7 @@
 ---
 title: "给Git历史提交添加GPG签名"
 date: 2022-01-06T15:26:51+08:00
-draft: true
+draft: false
 categories: ["Git"]
 tags: ["Git"]
 ---
