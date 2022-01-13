@@ -28,7 +28,7 @@ func TestXxx(*testing.T)
 
 要编写一个新的测试套件，需要创建一个名称以 _test.go 结尾的文件，该文件包含 `TestXxx` 函数，如上所述。 将该文件放在与被测试文件相同的包中。该文件将被排除在正常的程序包之外，但在运行 `go test` 命令时将被包含。 有关详细信息，请运行 `go help test` 和 `go help testflag` 了解。
 
-标准库的 **testing** 实现比较简单，并不支持断言，需要写 if 判断。所以不考虑 使用。
+标准库的 **testing** 实现比较简单，并不支持断言，需要写 if 判断。所以不考虑使用。
 
 ### Testify
 
@@ -345,7 +345,7 @@ func TestPingRoute(t *testing.T) {
 }
 ```
 
-
+现在将 http 服务关闭，再次运行单元测试之后发现依然是成功的。
 
 
 
