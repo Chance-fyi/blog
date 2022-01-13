@@ -88,7 +88,7 @@ func main() {
 $ go run main.go
 ```
 
-![image-20220110164032291](D:\HZ\Pictures\Typora\image-20220110164032291.png)
+![image-20220110164032291](https://image.chance.fyi/image-20220110164032291.png)
 
 我们已经使用了`github.com/gin-gonic/gin`包，可以执行`go mod tidy`命令重新整理依赖。
 
