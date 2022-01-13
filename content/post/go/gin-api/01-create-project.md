@@ -1,7 +1,7 @@
 ---
 title: "构建自己的go-gin-api脚手架(一)"
 date: 2022-01-10T15:37:44+08:00
-draft: true
+draft: false
 categories: ["go"]
 tags: ["go","gin"]
 ---
@@ -18,9 +18,9 @@ tags: ["go","gin"]
 
 使用 Goland 创建一个新项目`go-gin-api`。
 
-![image-20220110160124841](D:\HZ\Pictures\Typora\image-20220110160124841.png)
+![image-20220110160124841](https://image.chance.fyi/image-20220110160124841.png)
 
-可以看到项目中有一个 go.mod 的文件。
+可以看到项目中有一个 **go.mod** 的文件。
 
 ```
 module go-gin-api
@@ -42,9 +42,9 @@ go get: added github.com/go-playground/locales v0.13.0
 ...
 ```
 
-可以看到项目中又多了一个 go.sum 的文件，`go.sum` 文件详细罗列了当前项目直接或间接依赖的所有模块版本，并写明了那些模块版本的 SHA-256 哈希值以备 Go 在今后的操作中保证项目所依赖的那些模块版本不会被篡改。
+可以看到项目中又多了一个 **go.sum** 的文件，**go.sum** 文件详细罗列了当前项目直接或间接依赖的所有模块版本，并写明了那些模块版本的 SHA-256 哈希值以备 Go 在今后的操作中保证项目所依赖的那些模块版本不会被篡改。
 
-go.mod 文件也发生了改变：
+**go.mod** 文件也发生了改变：
 
 ```
 module go-gin-api
@@ -63,7 +63,7 @@ require (
 
 ### 测试
 
-创建一个`main.go`文件
+创建一个 **main.go** 文件
 
 ```go
 package main
@@ -92,7 +92,7 @@ $ go run main.go
 
 我们已经使用了`github.com/gin-gonic/gin`包，可以执行`go mod tidy`命令重新整理依赖。
 
-再次查 go.mod 文件
+再次查看 **go.mod** 文件
 
 ```
 module go-gin-api
