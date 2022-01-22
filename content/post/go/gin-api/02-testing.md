@@ -2,8 +2,8 @@
 title: "构建自己的go-gin-api脚手架(二)"
 date: 2022-01-11T13:41:12+08:00
 draft: false
-categories: ["go"]
-tags: ["go","gin","testing","Testify","GoConvey","httptest","单元测试"]
+categories: ["Go"]
+tags: ["Go","Gin","testing","Testify","GoConvey","httptest","单元测试"]
 ---
 
 在前文中我们已经成功的使用 Gin 框架搭建了一个简易的 API 服务，但是在一个项目中，所有的业务逻辑都写在 **main.go** 一个文件中显然是不合理的。所以接下来我们会对其进行重构，在整个搭建 go-gin-api 脚手架的过程中，会经常对其重构。

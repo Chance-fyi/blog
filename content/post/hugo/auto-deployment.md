@@ -2,8 +2,8 @@
 title: "自动部署"
 date: 2021-12-18T13:26:02+08:00
 draft: false
-categories: ["Hugo","git"]
-tags: ["Hugo","git","webhook","自动部署","Docker","docker-compose"]
+categories: ["Hugo","Git"]
+tags: ["Hugo","Git","webhook","自动部署","Docker","docker-compose"]
 ---
 
 每次写一篇新的文章或者有一点改动，都要手动放到服务器上，特别麻烦，所以今天来搭建一个自动部署环境。每次修改之后只要push到github上就可以了。

@@ -2,8 +2,8 @@
 title: "构建自己的go-gin-api脚手架(一)"
 date: 2022-01-10T15:37:44+08:00
 draft: false
-categories: ["go"]
-tags: ["go","gin"]
+categories: ["Go"]
+tags: ["Go","Gin"]
 ---
 
 ## 目标
