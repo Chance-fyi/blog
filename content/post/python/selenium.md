@@ -59,7 +59,7 @@ $ wget -P /tmp https://dl.google.com/linux/direct/google-chrome-stable_current_a
 # 安装Chrome失败
 $ dpkg -i /tmp/google-chrome-stable_current_amd64.deb 
 # 安装Chrome的依赖
-$ apt-get -f -y install
+$ apt-get install -y -f --fix-missing
 # 再次安装Chrome
 $ dpkg -i /tmp/google-chrome-stable_current_amd64.deb 
 ```
@@ -92,11 +92,11 @@ option = webdriver.ChromeOptions()
 # 无界面模式运行
 option.add_argument('headless')
 option.add_argument('no-sandbox')
-browser = webdriver.Chrome(chrome_options=option)
+driver = webdriver.Chrome(chrome_options=option)
 
-browser.get('http://www.baidu.com/')
-print(browser.title)
-browser.quit()
+driver.get('http://www.baidu.com/')
+print(driver.title)
+driver.quit()
 ```
 
 运行输出 **百度一下，你就知道** 成功获取到百度网页的标题，说明环境安装成功。如果输出乱码可以查看这篇[文章](/post/tool/ide/docker-terminal-chinese-garbled-code/)。
@@ -105,8 +105,42 @@ browser.quit()
 
 ### Dockerfile
 
-环境安装成功之后整理成 Dockerfile 
+环境安装成功之后整理成 Dockerfile ，因为 Dockerfile 构建时产生错误会直接退出构建，我们上面的安装 Chrome 时是有报错的，我们可以使用`逻辑或||`来忽略错误继续执行后面的语句。
 
 ```dockerfile
+FROM python
+
+ARG aly=https://mirrors.aliyun.com/pypi/simple/
+
+# 更换apt源
+RUN sed -i s@/deb.debian.org/@/mirrors.aliyun.com/@g /etc/apt/sources.list \
+    # 更新依赖
+    && apt-get clean \
+    && apt-get update \
+    # 下载Chrome安装包
+    && wget -P /tmp https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
+    # 安装Chrome失败之后安装Chrome的依赖
+    && dpkg -i /tmp/google-chrome-stable_current_amd64.deb || apt-get install -y -f --fix-missing \
+    # 再次安装Chrome
+    && dpkg -i /tmp/google-chrome-stable_current_amd64.deb \
+    # 下载ChromeDriver
+    && wget -P /tmp https://chromedriver.storage.googleapis.com/97.0.4692.71/chromedriver_linux64.zip \
+    # 解压
+    && unzip -d /usr/bin/ /tmp/chromedriver_linux64.zip \
+    # 安装Python包
+    && pip install selenium -i ${aly}
 ```
 
+## 调试
+
+因为使用了无界面的方式，对页面的一些操作，比如输入账号密码，到底是否成功，我们是不得而知的。这时候我们可以使用截图的方式来查看当前的页面效果。
+
+```python
+driver.save_screenshot('./1.png')
+```
+
+当然也可以直接使用有界面的方式，具体如何请自行查找资料，我也不会。
+
+### 页面乱码
+
+截图显示的页面中文可能是一个个框框，这个是因为 Linux 没有中文字体的原因，因为不影响我要完成的功能，暂时不管了。
