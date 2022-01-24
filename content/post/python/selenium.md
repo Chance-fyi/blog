@@ -144,3 +144,31 @@ driver.save_screenshot('./1.png')
 ### 页面乱码
 
 截图显示的页面中文可能是一个个框框，这个是因为 Linux 没有中文字体的原因，因为不影响我要完成的功能，暂时不管了。
+
+## 问题
+
+### 页面崩溃
+
+脚本运行几次之后，会获取不到元素报错，还有可能页面直接崩溃了。
+
+```
+selenium.common.exceptions.WebDriverException: Message: unknown error: session deleted because of page crash
+from tab crashed
+  (Session info: headless chrome=97.0.4692.99)
+```
+
+根据报错信息搜索大多数说是`shm`默认只有64M，太小的原因。
+
+```bash
+root@ec9ed055a1bb:/home# df -Th
+Filesystem     Type           Size  Used Avail Use% Mounted on
+overlay        overlay         63G  6.6G   53G  12% /
+tmpfs          tmpfs           64M     0   64M   0% /dev
+shm            tmpfs           64M   41M   24M  63% /dev/shm
+grpcfuse       fuse.grpcfuse  357G   58G  300G  17% /home
+/dev/sda1      ext4            63G  6.6G   53G  12% /etc/hosts
+tmpfs          tmpfs          993M     0  993M   0% /proc/acpi
+tmpfs          tmpfs          993M     0  993M   0% /sys/firmware
+```
+
+使用`df -Th`查看确实只有64M并且已经占用了63%，此时已经没有足够的内存给浏览器启动了，所以就页面崩溃了。可以只要设置大点就可以了吗，我发现容器刚启动时占用是0%的，随着脚本多次调用，占用会逐渐上升，并且只有在脚本异常退出时才会上升，由此我推断是脚本异常退出导致浏览器没有正确关闭，始终占用着内存，导致内存越来越大。所以只有我们正确关闭浏览器，就不会出现内存占用过高，导致下一次执行崩溃的问题了。
