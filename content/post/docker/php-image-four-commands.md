@@ -52,3 +52,10 @@ docker-php-ext-install 源码包目录名
 ### docker-php-ext-configure
 
 `docker-php-ext-configure` 一般都是需要跟 `docker-php-ext-install`搭配使用的。它的作用就是，当你安装扩展的时候，需要自定义配置时，就可以使用它来帮你做到。
+
+**用法：**
+
+```bash
+docker-php-ext-configure ext-name [configure flags]
+```
+
