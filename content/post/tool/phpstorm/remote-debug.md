@@ -4,13 +4,13 @@ date: 2021-12-11T13:57:27+08:00
 draft: true
 ---
 
-## 安装xdebug
+## 安装 xdebug
 
-### 1、查询xdebug版本
+### 1、查询 xdebug 版本
 
 输出`phpinfo()`，然后复制源码。
 
-然后使用xdebug官方提供的一个检测工具：[https://xdebug.org/wizard](https://xdebug.org/wizard)
+然后使用 xdebug 官方提供的一个检测工具：[https://xdebug.org/wizard](https://xdebug.org/wizard)
 
 ![image-20211211133611808](D:\88504\Pictures\Typora\image-20211211133611808.png)
 
@@ -35,9 +35,9 @@ RUN set -x \
     ......
 ```
 
-docker环境的话可以查看这一篇[文章](/post/docker/docker-compose-build-php-swoole)。
+docker 环境的话可以查看这一篇[文章](/post/docker/docker-compose-build-php-swoole)。
 
-> 注意：我现在使用的环境是没有swoole扩展的，你如果使用了我前面搭建的环境，请把swoole扩展删掉，因为`swoole`和`xdebug`是不兼容的。
+> 注意：我现在使用的环境是没有 swoole 扩展的，你如果使用了我前面搭建的环境，请把 swoole 扩展删掉，因为`swoole`和`xdebug`是不兼容的。
 >
 > 还有配置文件目录记得先复制在映射。
 
@@ -56,7 +56,7 @@ xdebug.idekey = "PHPSTORM"
 xdebug.remote_log=/tmp/xdebug.log
 ```
 
-## 配置PhpStorm
+## 配置 PhpStorm
 
 ![image-20211211151829955](D:\88504\Pictures\Typora\image-20211211151829955.png)
 
@@ -69,4 +69,3 @@ xdebug.remote_log=/tmp/xdebug.log
 ![image-20211211152507069](D:\88504\Pictures\Typora\image-20211211152507069.png)
 
 ![image-20211211152410270](D:\88504\Pictures\Typora\image-20211211152410270.png)
-

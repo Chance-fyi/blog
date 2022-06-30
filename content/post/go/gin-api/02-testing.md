@@ -3,12 +3,12 @@ title: "构建自己的go-gin-api脚手架(二)"
 date: 2022-01-11T13:41:12+08:00
 draft: false
 categories: ["Go"]
-tags: ["Go","Gin","testing","Testify","GoConvey","httptest","单元测试"]
+tags: ["Go", "Gin", "testing", "Testify", "GoConvey", "httptest", "单元测试"]
 ---
 
 在前文中我们已经成功的使用 Gin 框架搭建了一个简易的 API 服务，但是在一个项目中，所有的业务逻辑都写在 **main.go** 一个文件中显然是不合理的。所以接下来我们会对其进行重构，在整个搭建 go-gin-api 脚手架的过程中，会经常对其重构。
 
-> 每当我要进行重构的时候，第一个步骤永远相同：我得确保即将修改的代码拥有一组可靠的测试。这些测试必不可少，因为尽管遵循重构手法可以使我避免绝大多数引入bug的情形，但我毕竟是人，毕竟有可能犯错。程序越大，我的修改不小心破坏其他代码的可能性就越大——在数字时代，软件的名字就是脆弱。 —— 《重构：改善既有代码的设计》
+> 每当我要进行重构的时候，第一个步骤永远相同：我得确保即将修改的代码拥有一组可靠的测试。这些测试必不可少，因为尽管遵循重构手法可以使我避免绝大多数引入 bug 的情形，但我毕竟是人，毕竟有可能犯错。程序越大，我的修改不小心破坏其他代码的可能性就越大——在数字时代，软件的名字就是脆弱。 —— 《重构：改善既有代码的设计》
 
 所以在此之前我们需要编写一套可靠的单元测试，来确保代码重构之后还能良好的运行。
 
@@ -26,7 +26,7 @@ func TestXxx(*testing.T)
 
 在这些函数中，使用 `Error`、`Fail` 或相关方法来发出失败信号。
 
-要编写一个新的测试套件，需要创建一个名称以 _test.go 结尾的文件，该文件包含 `TestXxx` 函数，如上所述。 将该文件放在与被测试文件相同的包中。该文件将被排除在正常的程序包之外，但在运行 `go test` 命令时将被包含。 有关详细信息，请运行 `go help test` 和 `go help testflag` 了解。
+要编写一个新的测试套件，需要创建一个名称以 \_test.go 结尾的文件，该文件包含 `TestXxx` 函数，如上所述。 将该文件放在与被测试文件相同的包中。该文件将被排除在正常的程序包之外，但在运行 `go test` 命令时将被包含。 有关详细信息，请运行 `go help test` 和 `go help testflag` 了解。
 
 标准库的 **testing** 实现比较简单，并不支持断言，需要写 if 判断。所以不考虑使用。
 
@@ -116,19 +116,19 @@ func TestConvey(t *testing.T) {
 }
 ```
 
- 每个测试用例必须使用 **Convey** 函数包裹起来，一个 **Convey** 就是一个测试用例，并且可以嵌套使用
+每个测试用例必须使用 **Convey** 函数包裹起来，一个 **Convey** 就是一个测试用例，并且可以嵌套使用
 
 **Convey** 参数
 
-+ 第一个参数为测试用例的描述
-+ 第二个参数为测试函数的参数类型为`*testing.T`最外层必须传入，内层 **Convey** 可不传
-+  第三个参数为无参数、无返回值的函数，通常使用闭包，内部使用 **So** 函数进行断言
+- 第一个参数为测试用例的描述
+- 第二个参数为测试函数的参数类型为`*testing.T`最外层必须传入，内层 **Convey** 可不传
+- 第三个参数为无参数、无返回值的函数，通常使用闭包，内部使用 **So** 函数进行断言
 
 **So** 参数
 
-+ actual 输入
-+ assert 断言
-+ expected 期望值
+- actual 输入
+- assert 断言
+- expected 期望值
 
 #### 执行测试
 
@@ -148,7 +148,7 @@ func TestConvey(t *testing.T) {
 
 ```bash
 $ goconvey
-2022/01/12 17:24:12 goconvey.go:116: GoConvey server: 
+2022/01/12 17:24:12 goconvey.go:116: GoConvey server:
 2022/01/12 17:24:12 goconvey.go:121:   version: v1.7.2
 2022/01/12 17:24:12 goconvey.go:122:   host: 127.0.0.1
 2022/01/12 17:24:12 goconvey.go:123:   port: 8080
@@ -184,7 +184,7 @@ testing 功能太过简单，而且没有断言，就不考虑了。Testify 相�
 
 ![image-20220113131103708](https://image.chance.fyi/image-20220113131103708.png)
 
-## http测试
+## http 测试
 
 测试框架最终考虑使用 GoConvey ，对我们的接口进行测试，因为 GoConvey 使用的是`8080`端口，所以 **main.go** 我们改成监听`8000`端口，将 `r.Run()`改为`r.Run(":8000")`，然后启动服务编写测试用例进行测试。
 
@@ -213,9 +213,9 @@ func TestPingRoute(t *testing.T) {
 
 单元测试通过我们就可以放心大胆的重构代码了，但是每次单元测试接口都要启动服务，修改了还要重启，太过麻烦。不要急我们先进行重构，创建以下三个文件。
 
-+ boot/boot.go
-+ boot/router.go
-+ routers/api.go
+- boot/boot.go
+- boot/router.go
+- routers/api.go
 
 **boot/boot.go**
 
@@ -293,7 +293,7 @@ func Init(r *gin.Engine) {
 }
 ```
 
-修改 **main.go** 
+修改 **main.go**
 
 ```go
 package main
@@ -346,18 +346,3 @@ func TestPingRoute(t *testing.T) {
 ```
 
 现在将 http 服务关闭，再次运行单元测试之后发现依然是成功的。
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

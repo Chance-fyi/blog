@@ -3,7 +3,7 @@ title: "alpine镜像设置时区"
 date: 2022-03-29T14:53:01+08:00
 draft: false
 categories: ["Docker"]
-tags: ["Docker","Dockerfile","alpine","timezone"]
+tags: ["Docker", "Dockerfile", "alpine", "timezone"]
 ---
 
 ```dockerfile
@@ -16,4 +16,3 @@ RUN echo 'http://mirrors.aliyun.com/alpine/v3.4/main/' > /etc/apk/repositories \
     && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime \
     && echo '$TZ' > /etc/timezone
 ```
-

@@ -6,7 +6,7 @@ categories: ["Git"]
 tags: ["Git"]
 ---
 
-今天给commit添加了 GPG 签名，但是以前的提交记录却没有签名。
+今天给 commit 添加了 GPG 签名，但是以前的提交记录却没有签名。
 
 ![image-20220106153223483](https://image.chance.fyi/image-20220106153223483.png)
 
@@ -42,16 +42,3 @@ fi
 ```bash
 git push -f
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -3,7 +3,7 @@ title: "Docker中使用MySQL踩坑"
 date: 2022-04-08T11:26:24+08:00
 draft: false
 categories: ["Docker"]
-tags: ["Docker","MySQL"]
+tags: ["Docker", "MySQL"]
 ---
 
 需要使用到 MySQL ，打算使用 Docker 来部署，compose 来管理。原以为很简单，没想到还是有些坑的。
@@ -88,10 +88,10 @@ services:
 
 **参数说明**
 
-+ `lower_case_table_names=0` 表名存储为给定的大小和比较是区分大小写的
-+ `lower_case_table_names = 1` 表名存储在磁盘是小写的，但是比较的时候是不区分大小写
-+ `lower_case_table_names=2` 表名存储为给定的大小写但是比较的时候是小写的
-+ **unix 、linux 下 lower_case_table_names 默认值为 0 。Windows 下默认值是 1 。Mac OS X 下默认值是 2**
+- `lower_case_table_names=0` 表名存储为给定的大小和比较是区分大小写的
+- `lower_case_table_names = 1` 表名存储在磁盘是小写的，但是比较的时候是不区分大小写
+- `lower_case_table_names=2` 表名存储为给定的大小写但是比较的时候是小写的
+- **unix 、linux 下 lower_case_table_names 默认值为 0 。Windows 下默认值是 1 。Mac OS X 下默认值是 2**
 
 MySQL 8 默认设置了`lower_case_table_names`使用 Linux/Unix 初始化参数`0`。此配置只能在 MySQL 初始化时进行设置，并且也不应该在 MySQL 运行一段时间之后去更改此配置。有两种解决方案：
 
@@ -130,15 +130,15 @@ services:
 
 此方案也需要手动初始化`mysqld --initialize`，不需要修改`lower_case_table_names`了。
 
-+ 区分大小写 `fsutil.exe file setCaseSensitiveInfo ./ enable`
-+ 不区分大小写 `fsutil.exe file setCaseSensitiveInfo ./ disable`
-+ 查看是否区分大小写 `fsutil.exe file queryCaseSensitiveInfo ./`
-+ `./`是路径地址，在Windows 上使用，如果提示**拒绝访问**，请使用管理员权限，Mac 不知道是否可以使用。
+- 区分大小写 `fsutil.exe file setCaseSensitiveInfo ./ enable`
+- 不区分大小写 `fsutil.exe file setCaseSensitiveInfo ./ disable`
+- 查看是否区分大小写 `fsutil.exe file queryCaseSensitiveInfo ./`
+- `./`是路径地址，在 Windows 上使用，如果提示**拒绝访问**，请使用管理员权限，Mac 不知道是否可以使用。
 
 此时即使第一次部署也不会有问题了，反复重启也没有问题，就在我以为终于成功时，数据库连接不上了:joy:。因为我们自己执行了`mysqld --initialize`，所以通过`environment`设置的环境变量都失效了。看来此做法弊大于利，放弃了。反正数据库只会初始化一次，我们就先初始化之后，在将`command`修改挂载目录权限的代码加上就好了，这样以后重启也不会有什么问题，只需要第一次执行时手动修改一下就好了:joy:。
 
 **参考：**
 
-+ [https://stackoverflow.com/questions/64146845/mysql-not-starting-in-a-docker-container-on-macos-after-docker-update](https://stackoverflow.com/questions/64146845/mysql-not-starting-in-a-docker-container-on-macos-after-docker-update)
+- [https://stackoverflow.com/questions/64146845/mysql-not-starting-in-a-docker-container-on-macos-after-docker-update](https://stackoverflow.com/questions/64146845/mysql-not-starting-in-a-docker-container-on-macos-after-docker-update)
 
-+ [https://github.com/docker/for-win/issues/12384](https://github.com/docker/for-win/issues/12384)
+- [https://github.com/docker/for-win/issues/12384](https://github.com/docker/for-win/issues/12384)

@@ -1,22 +1,21 @@
 ---
-
 title: "从零完成一个带滑动验证的自动登陆"
 date: 2022-01-21T14:02:22+08:00
 draft: false
 categories: ["Python"]
-tags: ["Python","Selenium","爬虫","自动登录","滑动验证码"]
+tags: ["Python", "Selenium", "爬虫", "自动登录", "滑动验证码"]
 ---
 
 ## 前言
 
 最近帮女朋友写了一个监控九价订阅的小程序，对方接口需要登陆，Token 有效时间只有大概 2 个小时，每次都要手动去更新登陆状态，太过麻烦了。所以就想要解决一下自动登陆的问题，登陆有滑动验证码，查找了一些资料决定使用 **Python** + **Selenium** 来解决，可惜我也不会 Python ，只能一点点摸索了，顺便记录下来。
 
-## 了解Python
+## 了解 Python
 
 因为以前没有使用过 Python ，所以先了解一下 Python 的基本语法。
 
-+ [菜鸟教程](https://www.runoob.com/Python/Python-tutorial.html)
-+ [廖雪峰的 Python 教程](https://www.liaoxuefeng.com/wiki/1016959663602400)
+- [菜鸟教程](https://www.runoob.com/Python/Python-tutorial.html)
+- [廖雪峰的 Python 教程](https://www.liaoxuefeng.com/wiki/1016959663602400)
 
 ## 配置环境
 
@@ -24,7 +23,7 @@ tags: ["Python","Selenium","爬虫","自动登录","滑动验证码"]
 
 ### 安装 Python
 
-先简单写一个 **docker-compose.yml** 的文件，拉取一个 Python镜像并创建容器。
+先简单写一个 **docker-compose.yml** 的文件，拉取一个 Python 镜像并创建容器。
 
 **docker-compose.yml**
 
@@ -58,11 +57,11 @@ $ apt-get update
 # 下载Chrome安装包
 $ wget -P /tmp https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 # 安装Chrome失败
-$ dpkg -i /tmp/google-chrome-stable_current_amd64.deb 
+$ dpkg -i /tmp/google-chrome-stable_current_amd64.deb
 # 安装Chrome的依赖
 $ apt-get install -y -f --fix-missing
 # 再次安装Chrome
-$ dpkg -i /tmp/google-chrome-stable_current_amd64.deb 
+$ dpkg -i /tmp/google-chrome-stable_current_amd64.deb
 ```
 
 ### 安装 ChromeDriver
@@ -73,7 +72,7 @@ $ dpkg -i /tmp/google-chrome-stable_current_amd64.deb
 # 下载ChromeDriver
 $ wget -P /tmp https://chromedriver.storage.googleapis.com/97.0.4692.71/chromedriver_linux64.zip
 # 解压
-$ unzip -d /usr/bin/ /tmp/chromedriver_linux64.zip 
+$ unzip -d /usr/bin/ /tmp/chromedriver_linux64.zip
 ```
 
 ### 安装 Selenium
@@ -154,7 +153,7 @@ driver.save_screenshot('./1.png')
 
 通过`driver.find_element()`方法来获取页面元素，函数有两个参数。
 
-+ by 根据什么来获取元素，可选值有以下几个
+- by 根据什么来获取元素，可选值有以下几个
 
   ```
   By.ID = "id"
@@ -167,7 +166,7 @@ driver.save_screenshot('./1.png')
   By.CSS_SELECTOR = "css selector"
   ```
 
-+ value 与第一个参数所选方式对应的值
+- value 与第一个参数所选方式对应的值
 
 ### 写入内容
 
@@ -233,7 +232,7 @@ action.drag_and_drop_by_offset(dragger, offset, 0).perform()
 
 ![image-20220126155404473](https://image.chance.fyi/image-20220126155404473.png)
 
-### 获取Token
+### 获取 Token
 
 通过 Cookie 来获取 Token
 
@@ -253,7 +252,7 @@ from tab crashed
   (Session info: headless chrome=97.0.4692.99)
 ```
 
-根据报错信息搜索大多数说是`shm`默认只有64M，太小的原因。
+根据报错信息搜索大多数说是`shm`默认只有 64M，太小的原因。
 
 ```bash
 root@ec9ed055a1bb:/home# df -Th
@@ -267,7 +266,7 @@ tmpfs          tmpfs          993M     0  993M   0% /proc/acpi
 tmpfs          tmpfs          993M     0  993M   0% /sys/firmware
 ```
 
-使用`df -Th`查看确实只有64M并且已经占用了63%，此时已经没有足够的内存给浏览器启动了，所以就页面崩溃了。可是只要设置大点就可以了吗，我发现容器刚启动时占用是0%的，随着脚本多次调用，占用会逐渐上升，并且只有在脚本异常退出时才会上升，由此我推断是脚本异常退出导致浏览器没有正确关闭，始终占用着内存，导致内存越来越大。所以只有我们正确关闭浏览器，就不会出现内存占用过高，导致下一次执行崩溃的问题了。可以加一个 `try except` 捕获异常然后退出浏览器就可以了。
+使用`df -Th`查看确实只有 64M 并且已经占用了 63%，此时已经没有足够的内存给浏览器启动了，所以就页面崩溃了。可是只要设置大点就可以了吗，我发现容器刚启动时占用是 0%的，随着脚本多次调用，占用会逐渐上升，并且只有在脚本异常退出时才会上升，由此我推断是脚本异常退出导致浏览器没有正确关闭，始终占用着内存，导致内存越来越大。所以只有我们正确关闭浏览器，就不会出现内存占用过高，导致下一次执行崩溃的问题了。可以加一个 `try except` 捕获异常然后退出浏览器就可以了。
 
 ### 异步问题
 

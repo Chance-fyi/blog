@@ -64,4 +64,3 @@ WARNING: git-filter-branch has a glut of gotchas generating mangled history
 ```bash
 git push -f
 ```
-

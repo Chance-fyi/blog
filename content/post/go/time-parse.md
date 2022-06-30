@@ -3,7 +3,7 @@ title: "Go标准库time.Parse方法的时区问题"
 date: 2022-03-30T13:37:03+08:00
 draft: false
 categories: ["Go"]
-tags: ["Go","time"]
+tags: ["Go", "time"]
 ---
 
 `time.Parse`方法解析时间字符串得到的 time 的时区为`UTC`，并不会自动使用系统的默认时区。
@@ -26,4 +26,3 @@ fmt.Println(parse.Zone())
 //CST 28800
 fmt.Println(time.Now().Zone())
 ```
-

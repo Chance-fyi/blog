@@ -3,19 +3,19 @@ title: "构建自己的go-gin-api脚手架(三)"
 date: 2022-02-27T09:34:23+08:00
 draft: false
 categories: ["Go"]
-tags: ["Go","Gin","Viper","Config"]
+tags: ["Go", "Gin", "Viper", "Config"]
 ---
 
 ## Viper
 
 > 地址：[https://github.com/spf13/viper](https://github.com/spf13/viper)![](https://img.shields.io/github/stars/spf13/viper?style=social)
 
-Viper 是适用于Go应用程序的完整配置解决方案。它被设计用于在应用程序中工作，并且可以处理所有类型的配置需求和格式。
+Viper 是适用于 Go 应用程序的完整配置解决方案。它被设计用于在应用程序中工作，并且可以处理所有类型的配置需求和格式。
 
 ### 文档
 
-+ 英文：可查看 Github 仓库的 [README](https://github.com/spf13/viper/blob/master/README.md) 文件
-+ 中文：可查看这篇[文章](https://www.cnblogs.com/you-men/p/14694780.html#_label0)的翻译
+- 英文：可查看 Github 仓库的 [README](https://github.com/spf13/viper/blob/master/README.md) 文件
+- 中文：可查看这篇[文章](https://www.cnblogs.com/you-men/p/14694780.html#_label0)的翻译
 
 ### 安装
 
@@ -192,18 +192,3 @@ func configChange(v *viper.Viper) {
 ```
 
 然后在`Init()`方法的 for 循环中，读取完配置信息之后调用`configChange(viper.GetViper())`。
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

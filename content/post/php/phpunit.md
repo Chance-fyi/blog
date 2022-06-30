@@ -3,22 +3,22 @@ title: "在PhpStorm中使用PHPUnit进行单元测试"
 date: 2021-12-19T11:34:23+08:00
 draft: false
 categories: ["PHP"]
-tags: ["PHP","PHPUnit","单元测试","PhpStorm"]
+tags: ["PHP", "PHPUnit", "单元测试", "PhpStorm"]
 ---
 
-## PHPUnit是什么
+## PHPUnit 是什么
 
-> PHPUnit是一个面向PHP程序员的测试框架，这是一个xUnit的体系结构的单元测试框架。
+> PHPUnit 是一个面向 PHP 程序员的测试框架，这是一个 xUnit 的体系结构的单元测试框架。
 
-PHPUnit的官网地址为：[https://phpunit.de/](https://phpunit.de/)，中文镜像网站：[http://www.phpunit.cn/](http://www.phpunit.cn/)。
+PHPUnit 的官网地址为：[https://phpunit.de/](https://phpunit.de/)，中文镜像网站：[http://www.phpunit.cn/](http://www.phpunit.cn/)。
 
-## 安装PHPUnit
+## 安装 PHPUnit
 
-PHPUnit有两种安装方式，一种是下载PHAR发行包进行全局安装，一种是使用composer来为某一个项目安装。
+PHPUnit 有两种安装方式，一种是下载 PHAR 发行包进行全局安装，一种是使用 composer 来为某一个项目安装。
 
-推荐使用composer安装，本文也是使用这种安装方式。
+推荐使用 composer 安装，本文也是使用这种安装方式。
 
-首先以上一篇[文章](/post/php/create-composer-package/)创建的空的composer包为基础，执行以下命令即可。
+首先以上一篇[文章](/post/php/create-composer-package/)创建的空的 composer 包为基础，执行以下命令即可。
 
 ```sh
 root@d63b4f236f0c:/home# composer require --dev phpunit/phpunit
@@ -26,9 +26,9 @@ root@d63b4f236f0c:/home# composer require --dev phpunit/phpunit
 
 ## 编写 PHPUnit 测试
 
-+ 首先在项目下面新建一个`tests`文件夹，用来存放单元测试文件。
-+ 然后编辑composer.json文件为tests文件夹增加一个命名空间`"Chance\\Log\\Test\\": "tests/"`并执行`composer dump-autoload`更新composer的命名空间与文件夹映射关系。
-+ 在tests目录创建StackTest.php文件，使用官网的一个例子来测试。
+- 首先在项目下面新建一个`tests`文件夹，用来存放单元测试文件。
+- 然后编辑 composer.json 文件为 tests 文件夹增加一个命名空间`"Chance\\Log\\Test\\": "tests/"`并执行`composer dump-autoload`更新 composer 的命名空间与文件夹映射关系。
+- 在 tests 目录创建 StackTest.php 文件，使用官网的一个例子来测试。
 
 **StackTest.php**
 
@@ -106,15 +106,15 @@ Tests: 1, Assertions: 4, Failures: 1.
 
 更多的命令选项与断言方法可自行查看文档。
 
-## PhpStorm执行单元测试
+## PhpStorm 执行单元测试
 
 ### 配置
 
-打开`File`->`Settings`->`PHP`->`Test Frameworks`根据自己的安装方法配置PHPUnit的执行文件地址。
+打开`File`->`Settings`->`PHP`->`Test Frameworks`根据自己的安装方法配置 PHPUnit 的执行文件地址。
 
 ![image-20211220183743437](https://image.chance.fyi/image-20211220183743437.png)
 
-然后打开`Run`->`Edit Confiqurations`新建一个PHPUnit。
+然后打开`Run`->`Edit Confiqurations`新建一个 PHPUnit。
 
 ![image-20211220184707328](https://image.chance.fyi/image-20211220184707328.png)
 
@@ -124,43 +124,10 @@ Tests: 1, Assertions: 4, Failures: 1.
 
 ![image-20211220190555597](https://image.chance.fyi/image-20211220190555597.png)
 
-执行之后发现报错了，报错信息为`Message:  assert($testSuite instanceof TestSuiteForTestMethodWithDataProvider)`。
+执行之后发现报错了，报错信息为`Message: assert($testSuite instanceof TestSuiteForTestMethodWithDataProvider)`。
 
 ![image-20211220190705856](https://image.chance.fyi/image-20211220190705856.png)
 
-经过排查发现是因为PhpStorm默认加上了`--teamcity`参数的原因，在命令行执行加这个参数也是报错，那就只有去掉这个参数了，可是PhpStorm里也没有找到怎么去掉这个默认参数。
+经过排查发现是因为 PhpStorm 默认加上了`--teamcity`参数的原因，在命令行执行加这个参数也是报错，那就只有去掉这个参数了，可是 PhpStorm 里也没有找到怎么去掉这个默认参数。
 
 因为我们也不需要这个参数，所以最后解决办法为，将`/home/vendor/phpunit/phpunit/src/Logging/TeamCity/TeamCityLogger.php`文件的 92 - 100 行给注释掉，就可以执行成功了。
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

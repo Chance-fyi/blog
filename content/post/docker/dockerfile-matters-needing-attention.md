@@ -3,8 +3,7 @@ title: "Dockerfile编写注意事项与技巧"
 date: 2022-01-26T09:08:11+08:00
 draft: false
 categories: ["Docker"]
-tags: ["Docker","Dockerfile"]
-
+tags: ["Docker", "Dockerfile"]
 ---
 
 ### 1、多条指令应换行
@@ -39,7 +38,7 @@ RUN wget -P /tmp https://dl.google.com/linux/direct/google-chrome-stable_current
     # 安装Chrome的依赖
     && apt-get install -y -f --fix-missing \
     # 再次安装Chrome
-    && dpkg -i /tmp/google-chrome-stable_current_amd64.deb 
+    && dpkg -i /tmp/google-chrome-stable_current_amd64.deb
 ...
 ```
 
@@ -48,12 +47,11 @@ RUN wget -P /tmp https://dl.google.com/linux/direct/google-chrome-stable_current
 ```dockerfile
 ...
 # 下载Chrome安装包
-RUN 
+RUN
     wget -P /tmp https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
     # 安装Chrome失败之后安装Chrome的依赖
     && dpkg -i /tmp/google-chrome-stable_current_amd64.deb || apt-get install -y -f --fix-missing \
     # 再次安装Chrome
-    && dpkg -i /tmp/google-chrome-stable_current_amd64.deb 
+    && dpkg -i /tmp/google-chrome-stable_current_amd64.deb
 ...
 ```
-

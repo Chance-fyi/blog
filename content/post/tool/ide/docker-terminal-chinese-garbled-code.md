@@ -3,7 +3,7 @@ title: "IDE进入Docker容器输出中文乱码"
 date: 2022-01-22T10:06:42+08:00
 draft: false
 categories: ["IDE"]
-tags: ["IDE","PHPStorm","Terminal","Docker"]
+tags: ["IDE", "PHPStorm", "Terminal", "Docker"]
 ---
 
 如下图所示，中文字符输出为乱码。

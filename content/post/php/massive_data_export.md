@@ -3,7 +3,7 @@ title: "PHP百万数据导出Excel"
 date: 2022-05-19T19:43:58+08:00
 draft: false
 categories: ["PHP"]
-tags: ["PHP","Swoole","xlsWriter","RabbitMQ","协程","导出"]
+tags: ["PHP", "Swoole", "xlsWriter", "RabbitMQ", "协程", "导出"]
 ---
 
 ### 背景
@@ -12,9 +12,9 @@ tags: ["PHP","Swoole","xlsWriter","RabbitMQ","协程","导出"]
 
 ### 使用技术
 
-+ API 框架 [Hyperf](https://www.hyperf.wiki/2.2/#/zh-cn/)
-+ Web 框架 [Ant Design Pro](https://pro.ant.design/zh-CN)
-+ Excel 扩展 [xlsWriter](https://xlswriter.viest.me/)
+- API 框架 [Hyperf](https://www.hyperf.wiki/2.2/#/zh-cn/)
+- Web 框架 [Ant Design Pro](https://pro.ant.design/zh-CN)
+- Excel 扩展 [xlsWriter](https://xlswriter.viest.me/)
 
 ### 优化
 
@@ -22,7 +22,7 @@ tags: ["PHP","Swoole","xlsWriter","RabbitMQ","协程","导出"]
 
 因为不能将 Db 对象投递到消息队列中，所以投递过去的是 SQL 的预处理语句以及对应的变量，使用`Db::select($sql, $bindings);`执行 SQL 。然后尝试查询百万条数据，直接就内存溢出了。
 
-**vendor/hyperf/database/src/Connection.php 271行**
+**vendor/hyperf/database/src/Connection.php 271 行**
 
 ```php
 /**
@@ -54,7 +54,7 @@ public function select(string $query, array $bindings = [], bool $useReadPdo = t
 
 在`select`函数下面发现有一个`cursor`函数，两者入参相同，但是是使用`fetch`+`yield`来获取数据，每次只读取一条数据。
 
-**vendor/hyperf/database/src/Connection.php 295行**
+**vendor/hyperf/database/src/Connection.php 295 行**
 
 ```php
 /**
@@ -139,7 +139,7 @@ $excel->output();
 
 查看发送心跳的源码发现是使用协程实现的，开了一个协程来定时发送心跳数据包。
 
-**vendor/hyperf/amqp/src/AMQPConnection.php 308行**
+**vendor/hyperf/amqp/src/AMQPConnection.php 308 行**
 
 ```php
 protected function heartbeat(): void
