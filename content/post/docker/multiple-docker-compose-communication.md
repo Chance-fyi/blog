@@ -1,7 +1,7 @@
 ---
 title: "多个docker-compose项目之间通信与环境架构"
 date: 2022-06-25T20:44:54+08:00
-draft: true
+draft: false
 categories: ["Docker"]
 tags: ["Docker", "docker-compose", "Network"]
 ---
@@ -108,3 +108,7 @@ wget -q -O - http://mysql:8080 && echo
 一开始我准备把 Nginx 放到宿主机上，然后将各个服务的端口映射到宿主机，然后使用 Nginx 将请求转发到各个端口上去。但是我感觉这样并不是一个很好的方案，我就想到了能不能把这些基础的服务放到一个 `docker-compose` 中，其他所有项目共用这些基础服务呢，就是下面这种架构：
 ![图 6](http://image.chance.fyi/image-2022082816392845326.png)
 在这个架构下我们的项目就没有办法通过服务名来访问 Nginx、MySQL、Redis 等服务了。
+![图 7](http://image.chance.fyi/image-2022090518055541659.png)
+如上图所示，我们在一个项目里访问另一个项目中的基础服务 MySQL 时访问失败了。因为它们两个不在一个 `docker-compose` 中，没有 `network` 将其链接到一起。所以想要访问也很简单，只需要将其链接到同一个 `network` 中就可以了。
+如下图所示可以在我们的项目中引入一个外部的由基础服务所创建的默认的 `basic_services_default` network ，然后将我们的项目链接到这个 network 中，再次访问 MySQL 就可以成功访问了。
+![图 8](http://image.chance.fyi/image-2022090609164086333.png)
