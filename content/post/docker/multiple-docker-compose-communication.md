@@ -99,7 +99,7 @@ services:
 wget -q -O - http://mysql:8080 && echo
 ```
 
-![图 2](http://image.chance.fyi/image-2022082722370208534.png)
+![图 2](http://image.chance.fyi/image-2022090610024638950.png)
 
 ![图 3](http://image.chance.fyi/image-2022082722384267098.png)
 
