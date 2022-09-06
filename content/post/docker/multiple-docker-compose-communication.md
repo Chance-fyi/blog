@@ -100,6 +100,7 @@ wget -q -O - http://mysql:8080 && echo
 ```
 
 ![图 2](http://image.chance.fyi/image-2022082722370208534.png)
+
 ![图 3](http://image.chance.fyi/image-2022082722384267098.png)
 
 可以看到两个服务之间是双向联通的，可以互相访问，访问不存在的 Redis 服务则是失败的。
