@@ -32,9 +32,9 @@ tags: ["PHP", "Operation Log", "操作日志"]
 
 **缺点：**
 
-- 日志的记录穿插在代码中，对代码入侵度很高，增加了代码复杂度
+- 日志的记录穿插在代码中，与代码耦合度很高，增加了代码复杂度
 - 大块的日志信息在代码中看起来很丑
-- 随着代码的修改可能还会对日志信息进行修改
+- 随着代码的修改可能还会需要对日志信息进行修改维护
 - 有可能会忘记日志的记录，导致出了问题背锅
 
 ### 注解＋ AOP
@@ -48,7 +48,7 @@ tags: ["PHP", "Operation Log", "操作日志"]
 
 ### 想法
 
-操作日志一般是需要记录下用户的增删改操作，对数据库增删改的操作我们一般使用 orm 完成，所以我们可以使用 orm 的模型事件`created`、`updated`、`deleted`来记录用户的增删改操作。
+操作日志一般是需要记录下用户的增删改操作，对数据库增删改的操作我们一般使用 ORM 完成，所以我们可以使用 ORM 的模型事件`created`、`updated`、`deleted`来记录用户的增删改操作。
 在其中我们可以很方便的获取到用户的操作内容，然后怎么实现可读性呢？
 我的想法是通过获取表注释来明确这次操作的含义，然后通过字段注释知道操作字段的具体含义内容。如此我们就可以记录到可读性的日志内容了嘛？
 
@@ -74,13 +74,13 @@ create table tb_user
 ### 获取表注释
 
 ```sql
-SELECT TABLE_NAME, TABLE_COMMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = '数据库名称'
+SELECT TABLE_NAME, TABLE_COMMENT FROM infORMation_schema.TABLES WHERE TABLE_SCHEMA = '数据库名称'
 ```
 
 ### 获取字段注释
 
 ```sql
-SELECT TABLE_NAME,COLUMN_NAME,COLUMN_COMMENT FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = '数据库名称'
+SELECT TABLE_NAME,COLUMN_NAME,COLUMN_COMMENT FROM infORMation_schema.COLUMNS WHERE TABLE_SCHEMA = '数据库名称'
 ```
 
 根据表注释与字段注释我们可以得到以下一条日志信息：
@@ -107,3 +107,10 @@ public function getSexTextAttribute($key): string
 ## 总结
 
 使用这种方式来记录操作日志，可以记录下用户可读的操作日志，并且可以减少开发者的负担，开发过程中只需关心业务逻辑，不需要关心日志的记录，会自行完成日志记录。因为会统一记录，所以日志都是要使用统一的模板，所以灵活性和可定制性会比较差，请使用者自行衡量。如果你有好的想法，欢迎提个[issues](https://github.com/Chance-fyi/log/issues)共同交流。
+
+## 更新
+
+### 2022-10-10
+
+ORM 的模型事件并不能覆盖到所有的增删改操作，一般在进行批量增删改操作时 ORM 一般都不会选择触发事件，还有一些直接使用 DB 的操作同样不会触发事件。所以利用事件来记录日志并不能覆盖到全部的场景，需要换一个思路来记录日志。
+Think 的 ORM 所有的增删改查操作最后都会通过 `think\db\Query` 查询对象来解析执行，而 Laravel 的 ORM 所有的增删改查操作则都会通过 `\Illuminate\Database\Query\Builder` 来解析执行。我们就可以在此拦截到所有的增删改操作来生成记录操作日志。
