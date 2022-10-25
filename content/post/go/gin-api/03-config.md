@@ -2,8 +2,8 @@
 title: "构建自己的go-gin-api脚手架(三)"
 date: 2022-02-27T09:34:23+08:00
 draft: false
-categories: ["Go"]
-tags: ["Go", "Gin", "Viper", "Config"]
+categories: ["Go", "go-gin-api"]
+tags: ["Go", "Config", "Viper"]
 ---
 
 ## Viper
