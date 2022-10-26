@@ -1,7 +1,7 @@
 ---
 title: "Casbin的Model详解与使用"
 date: 2022-10-25T16:06:11+08:00
-draft: true
+draft: false
 categories: ["Go"]
 tags: ["Go", "Casbin", "RBAC", "权限管理"]
 ---
