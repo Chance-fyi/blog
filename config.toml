@@ -1,6 +1,6 @@
 baseURL = 'https://chance.fyi/'
 defaultContentLanguage = 'zh'
-title = 'Chance | 技术记录'
+title = 'Chance'
 theme = 'PaperMod'
 buildDrafts = false    # 构建包含草稿内容
 GoogleAnalytics = 'G-1EN9PGMCBL'
