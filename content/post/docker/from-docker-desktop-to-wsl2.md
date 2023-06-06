@@ -1,7 +1,7 @@
 ---
 title: "从Docker-Desktop迁移到wsl2"
 date: 2023-06-02T09:18:44+08:00
-draft: true
+draft: false
 categories: ["Docker"]
 tags: ["Docker", "wsl"]
 ---
