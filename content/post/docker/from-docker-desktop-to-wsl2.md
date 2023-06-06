@@ -1,10 +1,12 @@
 ---
-title: "From Docker Desktop to Wsl 2"
+title: "从Docker-Desktop迁移到wsl2"
 date: 2023-06-02T09:18:44+08:00
 draft: true
-categories: []
-tags: []
+categories: ["Docker"]
+tags: ["Docker", "wsl"]
 ---
+
+最近更新升级了最新版本的 Docker Desktop 4.20.0 ，然后发现了一个 bug [#13524](https://github.com/docker/for-win/issues/13524)，然后降级一个版本之后又发现了另一个 bug [#13477](https://github.com/docker/for-win/issues/13477)。决定寻找替代品，尝试了 Podman Desktop 之后放弃了，最终决定直接使用 wsl2。
 
 ### 修改源
 
@@ -34,7 +36,7 @@ deb-src https://mirrors.ustc.edu.cn/ubuntu/ jammy-backports main restricted univ
 # 退出 root 用户
 $ exit
 # 更新源
-sudo apt-get update
+$ sudo apt-get update
 ```
 
 ### 安装 Docker
@@ -73,7 +75,36 @@ $ sudo service docker start
 $ sudo usermod -aG docker $USER
 ```
 
+### 设置 Git
+
+#### 设置用户名和邮箱
+
+```bash
+$ git config --global user.name Chance
+$ git config --global user.email chance.fyii@gmail.com
+```
+
+#### 设置 ssh 密钥
+
+[生成 ssh 密钥并添加到 GitHub](https://docs.github.com/zh/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+
+#### 设置 GPG 签名
+
+```bash
+# 导入 GPG 签名
+$ gpg --import GPG.asc
+# 查看 GPG 签名
+$ gpg --list-secret-keys --keyid-format=long
+# 配置 GPG 签名
+$ git config --global user.signingkey 3AA5C34371567BD2
+# 默认对所有提交签名
+$ git config --global commit.gpgsign true
+$ export GPG_TTY=$(tty)
+```
+
 ### IDEA 配置
+
+#### Docker
 
 在 IDEA 内直接运行 `docker-compose.yml` 文件时，IDEA 默认调用的是 `docker-compose` 命令。在高版本 Docker 中，compose 是 Docker 中的一个插件，命令使用是 `docker compose`，所以运行之后报错。
 
@@ -99,29 +130,31 @@ docker compose "$@"
 $ sudo chmod +x /usr/bin/docker-compose
 ```
 
-### 设置 Git
-
-#### 设置用户名和邮箱
+Docker Desktop 更新了 `4.20.1` 版本，尝试将 Docker 安装到 wsl 的 `Ubuntu 22.04.2 LTS` 还是无法工作，删除 Docker Desktop 之后，IDE 运行 compose 文件出错。
 
 ```bash
-$ git config --global user.name Chance
-$ git config --global user.email chance.fyii@gmail.com
+failed to solve: php:8.1.19-cli: error getting credentials - err: docker-credential-desktop.exe resolves to executable in current directory (./docker-credential-desktop.exe), out: ``
+# 解决方案
+# https://forums.docker.com/t/docker-credential-desktop-exe-executable-file-not-found-in-path-using-wsl2/100225
+$ cat ~/.docker/config.json
+{
+  "credsStore": "desktop.exe"
+}
+# 删除 "credsStore": "desktop.exe"
 ```
 
-#### 设置 ssh 密钥
+#### GPG
 
-[生成 ssh 密钥并添加到 GitHub](https://docs.github.com/zh/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
-
-#### 设置 GPG 签名
+在 IDE 中使用 Git 提交代码 GPG 签名失败
 
 ```bash
-# 导入 GPG 签名
-$ gpg --import GPG.asc
-# 查看 GPG 签名
-$ gpg --list-secret-keys --keyid-format=long
-# 配置 GPG 签名
-$ git config --global user.signingkey 3AA5C34371567BD2
-# 默认对所有提交签名
-$ git config --global commit.gpgsign true
+error: gpg failed to sign the data
+fatal: failed to write commit object
+```
+
+解决方案
+
+```bash
+# https://stackoverflow.com/questions/41052538/git-error-gpg-failed-to-sign-data
 $ export GPG_TTY=$(tty)
 ```
