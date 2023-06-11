@@ -6,7 +6,7 @@ categories: ["Docker"]
 tags: ["Docker", "wsl"]
 ---
 
-最近更新升级了最新版本的 Docker Desktop 4.20.0 ，然后发现了一个 bug [#13524](https://github.com/docker/for-win/issues/13524)，然后降级一个版本之后又发现了另一个 bug [#13477](https://github.com/docker/for-win/issues/13477)。决定寻找替代品，尝试了 Podman Desktop 之后放弃了，最终决定直接使用 wsl2。
+最近更新升级了最新版本的 Docker Desktop 4.20.0 ，然后发现了一个 bug [#13524](https://github.com/docker/for-win/issues/13524)，然后降级一个版本之后又发现了另一个 bug [#13477](https://github.com/docker/for-win/issues/13477)。决定寻找替代品，尝试了 Podman Desktop 之后放弃了，最终决定直接使用 wsl2。记录一下迁移以及踩坑过程。
 
 ### 修改源
 
@@ -73,6 +73,7 @@ update-alternatives: using /usr/sbin/iptables-legacy to provide /usr/sbin/iptabl
 $ sudo service docker start
 # 将当前用户加入 docker 用户组，重启之后当前用户可使用 Docker
 $ sudo usermod -aG docker $USER
+# docker 容器启用 IPv6 https://docs.docker.com/config/daemon/ipv6/#use-ipv6-for-the-default-bridge-network
 ```
 
 ### 设置 Git
@@ -88,6 +89,21 @@ $ git config --global user.email chance.fyii@gmail.com
 
 [生成 ssh 密钥并添加到 GitHub](https://docs.github.com/zh/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
 
+执行 `ssh -T git@github.com` 失败
+
+```bash
+Received disconnect from 20.205.243.166 port 22:11: Bye Bye
+Disconnected from 20.205.243.166 port 22
+```
+
+解决办法 [https://github.com/orgs/community/discussions/24206](https://github.com/orgs/community/discussions/24206)
+
+```bash
+# 创建 ~/.ssh/config 文件，添加以下内容
+Host github.com
+KexAlgorithms=ecdh-sha2-nistp521
+```
+
 #### 设置 GPG 签名
 
 ```bash
@@ -99,7 +115,6 @@ $ gpg --list-secret-keys --keyid-format=long
 $ git config --global user.signingkey 3AA5C34371567BD2
 # 默认对所有提交签名
 $ git config --global commit.gpgsign true
-$ export GPG_TTY=$(tty)
 ```
 
 ### IDEA 配置
@@ -158,3 +173,7 @@ fatal: failed to write commit object
 # https://stackoverflow.com/questions/41052538/git-error-gpg-failed-to-sign-data
 $ export GPG_TTY=$(tty)
 ```
+
+#### Git
+
+在 IDE 中读取项目的 Git 记录以及 commit 经常有一些问题，需要多次刷新，是 wsl 的 bug，可以通过 `wsl --update` 升级 wsl。
