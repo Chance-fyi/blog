@@ -157,4 +157,5 @@ fatal: failed to write commit object
 ```bash
 # https://stackoverflow.com/questions/41052538/git-error-gpg-failed-to-sign-data
 $ export GPG_TTY=$(tty)
+$ echo "test" | gpg --clearsign
 ```
