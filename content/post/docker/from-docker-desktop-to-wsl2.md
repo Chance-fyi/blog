@@ -178,3 +178,21 @@ $ echo "test" | gpg --clearsign
 #### Git
 
 在 IDE 中读取项目的 Git 记录以及 commit 经常有一些问题，需要多次刷新，是 wsl 的 bug，可以通过 `wsl --update` 升级 wsl。
+
+### WSL 使用本机代理上网
+
+```bash
+# https://solidspoon.xyz/2021/02/17/配置WSL2使用Windows代理上网/
+# Clash 打开 Allow LAN
+# 然后在本机打开对 WSL 防火墙的入站规则
+$ New-NetFirewallRule -DisplayName "WSL" -Direction Inbound -InterfaceAlias "vEthernet (WSL)" -Action Allow
+# 主机 IP 保存在 /etc/resolv.conf 中
+$ cat /etc/resolv.conf
+# 设置代理
+$ vim ~/.bashrc
+# 打开 ~/.bashrc 新增下面两行
+export http_proxy="socks5://${hostip}:7890"
+export https_proxy="socks5://${hostip}:7890"
+# 测试
+$ curl -vv 'https://www.google.com'
+```
