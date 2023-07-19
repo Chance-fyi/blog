@@ -8,6 +8,11 @@ tags: ["Docker", "wsl"]
 
 最近更新升级了最新版本的 Docker Desktop 4.20.0 ，然后发现了一个 bug [#13524](https://github.com/docker/for-win/issues/13524)，然后降级一个版本之后又发现了另一个 bug [#13477](https://github.com/docker/for-win/issues/13477)。决定寻找替代品，尝试了 Podman Desktop 之后放弃了，最终决定直接使用 wsl2。记录一下迁移以及踩坑过程。
 
+### WSL 遇到的无法解决的问题
+
+- [microsoft/WSL#5118](https://github.com/microsoft/WSL/issues/5118)
+  导致无法使用 pnpm，只能使用 yarn、npm 替代。
+
 ### 修改源
 
 使用中科大的软件源 [https://mirrors.ustc.edu.cn/](https://mirrors.ustc.edu.cn/)
