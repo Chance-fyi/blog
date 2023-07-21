@@ -112,7 +112,7 @@ $ gpg --import GPG.asc
 # 查看 GPG 签名
 $ gpg --list-secret-keys --keyid-format=long
 # 配置 GPG 签名
-$ git config --global user.signingkey 3AA5C34371567BD2
+$ git config --global user.signingkey 610C83301C18094C
 # 默认对所有提交签名
 $ git config --global commit.gpgsign true
 ```
