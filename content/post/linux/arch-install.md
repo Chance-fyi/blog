@@ -1,7 +1,7 @@
 ---
 title: "Arch Linux安装"
 date: 2023-09-18T15:15:08+08:00
-draft: true
+draft: false
 categories: ["Linux"]
 tags: ["Linux", "Arch"]
 ---
