@@ -1,0 +1,31 @@
+{{- if not (.Param "hideFooter") }}
+<footer class="footer" style="margin-top: -30px">
+    访客数&nbsp;<span id="busuanzi_value_site_uv"></span>&nbsp;|&nbsp;
+    访问数&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;
+    <br>
+    <script id="LA-DATA-WIDGET" crossorigin="anonymous" charset="UTF-8" src="https://v6-widget.51.la/v6/JoBF12TKMlS32gOU/quote.js?theme=#999999,#333333,#999999,#333333,#FFFFFF,#333333,12&f=12&display=0,1,1,1,1,1,1,1"></script>
+</footer>
+{{- end }}
+<!-- 百度统计 -->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?f79f8c1e085332f177a0f3cee4a3fd26";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+<!-- 谷歌分析 -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1MTV9LHEBY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1MTV9LHEBY');
+</script>
+<!-- 51统计 -->
+<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+<script>LA.init({id: "JoBF12TKMlS32gOU",ck: "JoBF12TKMlS32gOU",autoTrack:true})</script>
