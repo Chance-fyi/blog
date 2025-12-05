@@ -29,7 +29,7 @@ http.request.full_uri == "http://your-domain.com/ntunnel_pgsql.php" and http.req
 3. 查看一个表数据
 4. 按 id 倒序筛选数据
 
-![picture 0](http://image.chance.fyi/image-2024092510075267395.png)
+![picture 0](/images/image-2024092510075267395.png)
 
 抓包结果显示，这些基本操作总共触发了 177 次请求。虽然每个请求的详细内容不方便都截图出来，但是通过观察每个请求的 Length，也可以发现存在大量重复请求。
 

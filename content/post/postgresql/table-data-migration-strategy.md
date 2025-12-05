@@ -219,7 +219,7 @@ pgcopydb clone --drop-if-exists --no-comments --filters filter.ini --dir pgcopyd
 
 ##### pg_dump & pg_restore
 
-![picture 0](http://image.chance.fyi/image-2024092510165730968.png)
+![picture 0](/images/image-2024092510165730968.png)
 
 备份花费时间：23m23s  
 恢复备份花费时间：24m15s  
@@ -227,8 +227,8 @@ pgcopydb clone --drop-if-exists --no-comments --filters filter.ini --dir pgcopyd
 
 ##### pgcopydb
 
-![picture 1](http://image.chance.fyi/image-2024092510175607179.png)
-![picture 2](http://image.chance.fyi/image-2024092510180933076.png)
+![picture 1](/images/image-2024092510175607179.png)
+![picture 2](/images/image-2024092510180933076.png)
 
 花费时间：29m7s  
 占用文件大小：2.3M
