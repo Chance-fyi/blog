@@ -50,8 +50,8 @@ Users may choose to use **local backup only**, without enabling Google Drive syn
 - No analytics, no tracking, no ads, and no third-party data sharing.
 
 For details:  
-**Privacy Policy:** [https://github.com/Chance-fyi/mouse-gestures/wiki/Privacy-Policy](https://github.com/Chance-fyi/mouse-gestures/wiki/Privacy-Policy)  
-**Terms of Service:** [https://github.com/Chance-fyi/mouse-gestures/wiki/Terms-of-Service](https://github.com/Chance-fyi/mouse-gestures/wiki/Terms-of-Service)
+**Privacy Policy:** [https://chance.fyi/mouse-gestures-privacy-policy](/mouse-gestures-privacy-policy)  
+**Terms of Service:** [https://chance.fyi/mouse-gestures-terms-of-service](/mouse-gestures-terms-of-service)
 
 ---
 
